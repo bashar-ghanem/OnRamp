@@ -1,0 +1,15 @@
+name: Manual Greeting # The display name of the workflow in the GitHub Actions tab
+
+on: # defines the trigger for the workflow
+  workflow_dispatch: # allow this workflow to be triggered manually from the GitHub Actions tab
+    inputs: # define a form field on the UI
+     name:
+       description: 'Name to greet'
+       required: true
+       default: 'User'
+jobs:
+  greet: # the name of the job
+    runs-on: ubuntu-latest # run this job on the latest version of Ubuntu
+    steps: # a job is made of steps executed in order
+      - name: Greet the user # label for the step
+        run: echo "Hello, ${{ github.actor }}! You entered ${{ inputs.name }}!" # the command to run, using the input from the form field
